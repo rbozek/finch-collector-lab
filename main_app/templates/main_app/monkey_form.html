@@ -8,7 +8,16 @@
 {% block content %}
 
 <div class="page-header">
-  <h1>Add a Monkey</h1>
+  
+  {% comment %} could also be:
+  {% if monkey %}
+    <h1>Edit {{ monkey.name }}</h1> {% endcomment %}
+  {% if object %}
+    <h1>Edit {{object.name}}</h1>
+  {% else %}
+    <h1>Add a Cat</h1>
+  {% endif %}
+
   <img src="{% static 'images/monkey-cowboy-small.png' %}" alt="Same monkey, different day"/>
 </div>
 {% comment %} 
