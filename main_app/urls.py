@@ -6,4 +6,6 @@ urlpatterns = [
   path('about/', views.about, name='about'),
   path('monkeys/', views.monkey_index, name='monkey-index'),
   path('monkeys/<int:monkey_id>/', views.monkey_detail, name='monkey-detail'),
+  # using CBV's below:
+  path('monkeys/create/', views.MonkeyCreate.as_view(), name='monkey-create'),
 ]

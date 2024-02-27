@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 from .models import Monkey
 
 # Added
@@ -22,3 +23,9 @@ def monkey_index(request):
 def monkey_detail(request, monkey_id):
   monkey = Monkey.objects.get(id=monkey_id)
   return render(request, 'monkeys/detail.html', { 'monkey': monkey })
+
+class MonkeyCreate(CreateView):
+  model = Monkey
+  fields = '__all__'
+  # OR
+  # fields = ['name', 'breed', 'description', 'age']
