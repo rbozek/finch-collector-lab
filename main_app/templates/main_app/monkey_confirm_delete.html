@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="page-header">
+  <h1>Delete Monkey?</h1>
+  <img src="{% static 'images/monkey-cowboy-small.png' %}" alt="Same monkey, different day"/>
+</div>
+<h2>Are you sure you want to set {{monkey.name}} free?</h2>
+
+<form action="" method="post" class="form">
+  {% csrf_token %}
+  <a 
+    href="{% url 'monkey-detail' monkey.id %}" 
+    class="btn secondary"
+  >
+    Cancel
+  </a>
+  <button type="submit" class="btn danger">Release {{monkey.name}}!</button>
+</form>
+
+{% endblock %}
