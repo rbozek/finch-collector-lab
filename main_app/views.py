@@ -29,3 +29,5 @@ class MonkeyCreate(CreateView):
   fields = '__all__'
   # OR
   # fields = ['name', 'breed', 'description', 'age']
+  # going to use method written in models.py instead:
+  # success_url = '/monkeys/'
