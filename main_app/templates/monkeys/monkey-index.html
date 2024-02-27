@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link 
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/monkeys/monkey-index.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <h1>Monkey List</h1>
+  <img src="{% static 'images/monkey-butler.png' %}" alt="Description here eventually" />
+  <img src="{% static 'images/monkey-candle.png' %}" alt="Description here eventually" />
+  <img src="{% static 'images/monkey-cowboy.png' %}" alt="Description here eventually" />
+  <img src="{% static 'images/monkey-xmas.png' %}" alt="Description here eventually" />
+</section>
+
+<section class="card-container">
+  {% for monkey in monkeys %}
+    <div class="card">
+      <div class="card-content">
+        <div class="card-img-container">
+          <img 
+            src="{% static 'images/monkey-cowboy-small.png' %}" 
+            alt="My cutie pie"
+          >
+        </div>
+        <h2 class="card-title">{{ monkey.name }}</h2>
+        {% if monkey.age > 0 %}
+          <p>A {{ monkey.age }} year old {{ monkey.breed }}</p>
+        {% else %}
+          <p>A {{ monkey.breed }}.</p>
+        {% endif %}
+        <p><small>{{ monkey.description }}</small></p>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
