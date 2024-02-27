@@ -26,6 +26,12 @@
       <h2>A {{ monkey.breed }} kitten.</h2>
     {% endif %}
     <p>{{ monkey.description }}</p>
+    {% comment %} New markup {% endcomment %}
+    <div class="monkey-actions">
+      <a href="{% url 'monkey-update' monkey.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'monkey-delete' monkey.id %}" class="btn danger">Delete</a>
+    </div>
+    {% comment %} New markup above {% endcomment %}
   </div>
 </section>
 

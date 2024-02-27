@@ -8,4 +8,6 @@ urlpatterns = [
   path('monkeys/<int:monkey_id>/', views.monkey_detail, name='monkey-detail'),
   # using CBV's below:
   path('monkeys/create/', views.MonkeyCreate.as_view(), name='monkey-create'),
+  path('monkeys/<int:pk>/update/', views.MonkeyUpdate.as_view(), name='monkey-update'),
+  path('monkeys/<int:pk>/delete/', views.MonkeyDelete.as_view(), name='monkey-delete'),
 ]

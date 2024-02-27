@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Monkey
 
 # Added
@@ -31,3 +31,12 @@ class MonkeyCreate(CreateView):
   # fields = ['name', 'breed', 'description', 'age']
   # going to use method written in models.py instead:
   # success_url = '/monkeys/'
+
+class MonkeyUpdate(UpdateView):
+  model = Monkey
+  # Let's disallow the renaming of a cat by excluding the name field!
+  fields = ['breed', 'description', 'age']
+
+class MonkeyDelete(DeleteView):
+  model = Monkey
+  success_url = '/monkeys/'
