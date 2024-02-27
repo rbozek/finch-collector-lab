@@ -18,3 +18,7 @@ def monkey_index(request):
 # From Step 1, refactored to use ORM Monkey mondel! (above)
 # def monkey_index(request):
 #   return render(request, 'monkeys/monkey-index.html', { 'monkeys': monkeys })
+
+def monkey_detail(request, monkey_id):
+  monkey = Monkey.objects.get(id=monkey_id)
+  return render(request, 'monkeys/detail.html', { 'monkey': monkey })

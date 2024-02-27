@@ -22,20 +22,25 @@
 <section class="card-container">
   {% for monkey in monkeys %}
     <div class="card">
-      <div class="card-content">
-        <div class="card-img-container">
-          <img 
-            src="{% static 'images/monkey-cowboy-small.png' %}" 
-            alt="My cutie pie"
-          >
+      {% comment %} Add this line {% endcomment %}
+      <a href="/monkeys/{{ monkey.id }}">
+
+        <div class="card-content">
+          <div class="card-img-container">
+            <img 
+              src="{% static 'images/monkey-cowboy-small.png' %}" 
+              alt="My cutie pie"
+            >
+          </div>
+          <h2 class="card-title">{{ monkey.name }}</h2>
+          {% if monkey.age > 0 %}
+            <p>A {{ monkey.age }} year old {{ monkey.breed }}</p>
+          {% else %}
+            <p>A {{ monkey.breed }}.</p>
+          {% endif %}
+          <p><small>{{ monkey.description }}</small></p>
         </div>
-        <h2 class="card-title">{{ monkey.name }}</h2>
-        {% if monkey.age > 0 %}
-          <p>A {{ monkey.age }} year old {{ monkey.breed }}</p>
-        {% else %}
-          <p>A {{ monkey.breed }}.</p>
-        {% endif %}
-        <p><small>{{ monkey.description }}</small></p>
+
       </div>
     </div>
   {% endfor %}
