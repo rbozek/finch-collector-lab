@@ -40,3 +40,5 @@ class MonkeyUpdate(UpdateView):
 class MonkeyDelete(DeleteView):
   model = Monkey
   success_url = '/monkeys/'
+
+
