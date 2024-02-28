@@ -35,3 +35,6 @@ class Brushing(models.Model):
     # Nice method for obtaining the friendly value of a Field.choice
     # questioning my naming choice - "brushing?" "Brush?"
     return f"{self.get_brushing_display()} on {self.date}"
+  
+  class Meta:
+    ordering = ['-date']
