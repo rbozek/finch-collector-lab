@@ -10,4 +10,6 @@ urlpatterns = [
   path('monkeys/create/', views.MonkeyCreate.as_view(), name='monkey-create'),
   path('monkeys/<int:pk>/update/', views.MonkeyUpdate.as_view(), name='monkey-update'),
   path('monkeys/<int:pk>/delete/', views.MonkeyDelete.as_view(), name='monkey-delete'),
+
+  path('monkeys/<int:monkey_id>/add-brushing/', views.add_brushing, name='add-brushing'),
 ]

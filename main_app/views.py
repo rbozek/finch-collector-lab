@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Monkey
 from .forms import BrushingForm
@@ -32,6 +32,7 @@ def monkey_detail(request, monkey_id):
 
 
 
+
 class MonkeyCreate(CreateView):
   model = Monkey
   fields = '__all__'
@@ -50,3 +51,14 @@ class MonkeyDelete(DeleteView):
   success_url = '/monkeys/'
 
 
+
+def add_brushing(request, monkey_id):
+  # create a ModelForm instance using the data in request.POST
+  form = BrushingForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it has the monkey_id assigned
+    new_feeding = form.save(commit=False)
+    new_feeding.monkey_id = monkey_id
+    new_feeding.save()
+  return redirect('monkey-detail', monkey_id=monkey_id)
