@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
+
 
 BRUSHINGS = (
   ('M', 'Morning'),
@@ -19,7 +21,11 @@ class Monkey(models.Model):
   def get_absolute_url(self):
     return reverse('monkey-detail', kwargs={'monkey_id': self.id})
   
-# Add new Brushing model
+  def brushed_for_today(self):
+    return self.brushing_set.filter(date=date.today()).count() >= len(BRUSHINGS)
+  
+
+# new Brushing model
 class Brushing(models.Model):
   date = models.DateField('Brushing date')
   brushing = models.CharField(

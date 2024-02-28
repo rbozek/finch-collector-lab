@@ -80,6 +80,13 @@
 			autocomplete="off"
     >
       {% csrf_token %}
+
+      {% if monkey.brushed_for_today %}
+        <p class="brushed">{{monkey.name}} has been brushed to maximum suavecito today!</p>
+      {% else %}
+        <p class="unbrushed">{{monkey.name}} might be a hairy mess right now!</p>
+      {% endif %}
+
       {{ brushing_form.as_p }}
       <button type="submit" class="btn submit">Add Brushing</button>
     </form>
