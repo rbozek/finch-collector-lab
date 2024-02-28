@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Monkey
+from .forms import BrushingForm
+
 
 # Added
 from django.http import HttpResponse
@@ -22,7 +24,13 @@ def monkey_index(request):
 
 def monkey_detail(request, monkey_id):
   monkey = Monkey.objects.get(id=monkey_id)
-  return render(request, 'monkeys/detail.html', { 'monkey': monkey })
+  brushing_form = BrushingForm()
+  return render(request, 'monkeys/detail.html', {
+    'monkey': monkey,
+    'brushing_form': brushing_form
+  })
+
+
 
 class MonkeyCreate(CreateView):
   model = Monkey
