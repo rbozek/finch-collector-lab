@@ -35,4 +35,46 @@
   </div>
 </section>
 
+{% comment %} RENAMED!! {% endcomment %}
+<div class="brushings-accessory-container">
+  {% comment %} RENAMED!! {% endcomment %}
+  <section class="brushings">
+    <div class="subsection-title">
+      <h2>Brushings</h2>
+      <img 
+        src="{% static 'images/hairbrush-small.png' %}" 
+        alt="hairbrush"
+        height="50px"
+      />
+      <img 
+        src="{% static 'images/hairbrush-small.png' %}" 
+        alt="hairbrush"
+        height="50px"
+      />
+      <img 
+        src="{% static 'images/hairbrush-small.png' %}" 
+        alt="hairbrush"
+        height="50px"
+      />
+    </div>
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Brushing</th></tr>
+      </thead>
+      <tbody>
+          {% comment %} RENAMED!! {% endcomment %}
+          {% for brushing in monkey.brushing_set.all %}
+          <tr>
+            {% comment %} RENAMED!! {% endcomment %}
+            <td>{{brushing.date}}</td>
+            {% comment %} RENAMED!! {% endcomment %}
+            <td>{{brushing.get_brushing_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
+
+
 {% endblock %}
