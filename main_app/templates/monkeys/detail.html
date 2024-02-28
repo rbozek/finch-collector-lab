@@ -57,6 +57,20 @@
         height="50px"
       />
     </div>
+
+    <h3>Add a Brushing</h3>
+    <form
+      method="post" 
+      class="subsection-content"
+			autocomplete="off"
+    >
+      {% csrf_token %}
+      {{ brushing_form.as_p }}
+      <button type="submit" class="btn submit">Add Brushing</button>
+    </form>
+
+    
+    <h3>Past Brushings</h3>
     <table>
       <thead>
         <tr><th>Date</th><th>Brushing</th></tr>
