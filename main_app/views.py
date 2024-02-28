@@ -30,7 +30,7 @@ class MonkeyCreate(CreateView):
   # OR
   # fields = ['name', 'breed', 'description', 'age']
   # going to use method written in models.py instead:
-  # success_url = '/monkeys/'
+  # success_url = '/monkeys/' 
 
 class MonkeyUpdate(UpdateView):
   model = Monkey
