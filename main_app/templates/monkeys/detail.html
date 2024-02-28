@@ -2,11 +2,25 @@
 {% load static %}
 
 {% block head %}
+
+<link 
+  href="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.css" 
+  rel="stylesheet" 
+/>
+<link rel="stylesheet" href="{% static 'css/mcdp.css' %}">
+<script 
+  src="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.js"
+>
+</script>
+
 <link 
   rel="stylesheet" 
   type="text/css" 
   href="{% static 'css/monkeys/monkey-detail.css' %}"
 />
+
+<script defer src="{% static 'js/monkey-detail.js' %}"></script>
+
 {% endblock %}
 
 {% block content %}
@@ -69,7 +83,7 @@
       <button type="submit" class="btn submit">Add Brushing</button>
     </form>
 
-    
+
     <h3>Past Brushings</h3>
     <table>
       <thead>
