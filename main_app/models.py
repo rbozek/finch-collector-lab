@@ -44,3 +44,14 @@ class Brushing(models.Model):
   
   class Meta:
     ordering = ['-date']
+
+
+class Accessory(models.Model):
+  name = models.CharField(max_length=50)
+  color = models.CharField(max_length=20)
+
+  def __str__(self):
+    return self.name
+
+  def get_absolute_url(self):
+    return reverse('accessory-detail', kwargs={'pk': self.id})
