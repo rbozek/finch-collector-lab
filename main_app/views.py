@@ -74,3 +74,11 @@ class AccessoryList(ListView):
 
 class AccessoryDetail(DetailView):
   model = Accessory
+
+class AccessoryUpdate(UpdateView):
+  model = Accessory
+  fields = ['name', 'color']
+
+class AccessoryDelete(DeleteView):
+  model = Accessory
+  success_url = '/accessories/'
