@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Monkey
+from .models import Monkey, Accessory
 from .forms import BrushingForm
 
 
@@ -62,3 +62,8 @@ def add_brushing(request, monkey_id):
     new_feeding.monkey_id = monkey_id
     new_feeding.save()
   return redirect('monkey-detail', monkey_id=monkey_id)
+
+
+class AccessoryCreate(CreateView):
+  model = Accessory
+  fields = '__all__'
