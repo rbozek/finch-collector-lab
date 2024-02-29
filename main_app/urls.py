@@ -15,4 +15,6 @@ urlpatterns = [
 
   # will this create plural/spelling issue??
   path('accessories/create/', views.AccessoryCreate.as_view(), name='accessory-create'),
+  path('accessories/<int:pk>/', views.AccessoryDetail.as_view(), name='accessory-detail'),
+  path('accessories/', views.AccessoryList.as_view(), name='accessory-index'),
 ]

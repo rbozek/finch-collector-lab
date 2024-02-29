@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from .models import Monkey, Accessory
 from .forms import BrushingForm
 
@@ -67,3 +68,9 @@ def add_brushing(request, monkey_id):
 class AccessoryCreate(CreateView):
   model = Accessory
   fields = '__all__'
+
+class AccessoryList(ListView):
+  model = Accessory
+
+class AccessoryDetail(DetailView):
+  model = Accessory
