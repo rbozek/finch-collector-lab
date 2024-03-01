@@ -5,7 +5,7 @@ from .models import Monkey, Accessory
 from .forms import BrushingForm
 
 
-# Added
+# Added - might not need anymore!
 from django.http import HttpResponse
 
 # Define the home view
@@ -84,3 +84,9 @@ class AccessoryUpdate(UpdateView):
 class AccessoryDelete(DeleteView):
   model = Accessory
   success_url = '/accessories/'
+
+
+def assoc_accessory(request, monkey_id, accessory_id):
+  # Note that you can pass a accessory's id instead of the whole object
+  Monkey.objects.get(id=monkey_id).accessories.add(accessory_id)
+  return redirect('monkey-detail', monkey_id=monkey_id)

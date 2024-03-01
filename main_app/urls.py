@@ -12,6 +12,7 @@ urlpatterns = [
   path('monkeys/<int:pk>/delete/', views.MonkeyDelete.as_view(), name='monkey-delete'),
 
   path('monkeys/<int:monkey_id>/add-brushing/', views.add_brushing, name='add-brushing'),
+  path('monkeys/<int:monkey_id>/assoc-accessory/<int:accessory_id>/', views.assoc_accessory, name='assoc-accessory'),
 
   # will this create plural/spelling issue??
   path('accessories/create/', views.AccessoryCreate.as_view(), name='accessory-create'),
