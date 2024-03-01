@@ -25,10 +25,12 @@ def monkey_index(request):
 
 def monkey_detail(request, monkey_id):
   monkey = Monkey.objects.get(id=monkey_id)
+  accessories_monkey_doesnt_have = Accessory.objects.exclude(id__in = monkey.accessories.all().values_list('id'))
   brushing_form = BrushingForm()
   return render(request, 'monkeys/detail.html', {
     'monkey': monkey,
-    'brushing_form': brushing_form
+    'brushing_form': brushing_form,
+    'accessories_not' : accessories_monkey_doesnt_have,
   })
 
 

@@ -143,14 +143,34 @@
         <p class="no-accessories">{{monkey.name}} doesn't have any accessories 😞</p>
       {% endif %}
     </div>
+
+
     <h3>Available Accessories</h3>
     <div class="subsection-content">
-      {% comment %} We'll display available accessories here {% endcomment %}
+      {% if accessories_not.count %}
+        {% for accessory in accessories_not.all %}
+          <div class="accessory-container">
+            <div 
+              class="color-block"
+              style="background-color: {{ accessory.color }}"
+            ></div>
+            <a href="{% url 'accessory-detail' accessory.id %}">
+              <p>A {{ accessory.color }} {{ accessory.name }}</p>
+            </a>
+            <form action="" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn submit">Give accessory</button>
+            </form>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="all-accessories">
+          {{monkey.name}} already has all the available accessories 🥳
+        </p>
+      {% endif %}
     </div>
+
   </section>
-
-
-
 </div>
 
 
