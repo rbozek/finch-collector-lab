@@ -116,6 +116,41 @@
       </div>
     {% endif %}
   </section>
+
+
+  <section class="accessories">
+    <div class="subsection-title">
+      <h2>Accessories</h2>
+      <img src="{% static 'images/cowboy-hat-med.png' %}" alt="the stupid hat" />
+      <img src="{% static 'images/cowboy-hat-med.png' %}" alt="the stupid hat" />
+      <img src="{% static 'images/cowboy-hat-med.png' %}" alt="the stupid hat" />
+    </div>
+    <h3>{{ monkey.name }}'s Accessories</h3>
+    <div class="subsection-content">
+      {% if monkey.accessories.count %}
+        {% for accessory in monkey.accessories.all %}
+          <div class="accessory-container">
+            <div 
+              class="color-block"
+              style="background-color: {{ accessory.color }}"
+            ></div>
+            <a href="{% url 'accessory-detail' accessory.id %}">
+              <p>A {{ accessory.color }} {{ accessory.name }}</p>
+            </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-accessories">{{monkey.name}} doesn't have any accessories 😞</p>
+      {% endif %}
+    </div>
+    <h3>Available Accessories</h3>
+    <div class="subsection-content">
+      {% comment %} We'll display available accessories here {% endcomment %}
+    </div>
+  </section>
+
+
+
 </div>
 
 

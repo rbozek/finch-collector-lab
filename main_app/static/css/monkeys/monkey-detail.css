@@ -42,7 +42,7 @@
 }
 
 /* CHECK OUT LATER - renamed??*/
-.toy-container {
+.accessory-container {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -58,17 +58,17 @@
 /* CHECK OUT LATER - renamed!!*/
 .unbrushed,
 .brushed,
-.no-toys,
-.all-toys {
+.no-accessories,
+.all-accessories {
   margin: 0;
   font-weight: bold;
 }
 .unbrushed,
-.no-toys {
+.no-accessories {
   color: var(--danger);
 }
 .brushed,
-.all-toys {
+.all-accessories {
   color: var(--submit);
 }
 
@@ -118,12 +118,12 @@
 
 /* CHECK OUT LATER - renamed!!*/
 .brushings h2,
-.toys h2 {
+.accessories h2 {
   font-size: 3.2rem;
   margin: 0;
 }
 .brushings h3,
-.toys h3 {
+.accessories h3 {
   font-size: var(--font-xl);
   margin: 10px 0;
 }
@@ -162,14 +162,14 @@
 
 
 /* CHECK OUT LATER - renamed!!*/
-.toy-container p {
+.accessory-container p {
   margin: 12px 0;
 }
-.toy-container a {
+.accessory-container a {
   text-decoration: none;
   color: #111;
 }
-.toy-container .btn {
+.accessory-container .btn {
   padding: 3px 10px;
   margin-left: 10px;
 }
