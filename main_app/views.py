@@ -36,9 +36,9 @@ def monkey_detail(request, monkey_id):
 
 class MonkeyCreate(CreateView):
   model = Monkey
-  fields = '__all__'
+  # fields = '__all__'
   # OR
-  # fields = ['name', 'breed', 'description', 'age']
+  fields = ['name', 'breed', 'description', 'age']
   # going to use method written in models.py instead:
   # success_url = '/monkeys/' 
 

@@ -3,6 +3,17 @@ from django.urls import reverse
 from datetime import date
 
 
+class Accessory(models.Model):
+  name = models.CharField(max_length=50)
+  color = models.CharField(max_length=20)
+
+  def __str__(self):
+    return self.name
+
+  def get_absolute_url(self):
+    return reverse('accessory-detail', kwargs={'pk': self.id})
+  
+
 BRUSHINGS = (
   ('M', 'Morning'),
   ('A', 'Afternoon'),
@@ -14,6 +25,8 @@ class Monkey(models.Model):
   breed = models.CharField(max_length=100)
   description = models.TextField(max_length=250)
   age = models.IntegerField()
+  # rename issue??
+  accessories = models.ManyToManyField(Accessory)
 
   def __str__(self):
     return self.name
@@ -45,13 +58,3 @@ class Brushing(models.Model):
   class Meta:
     ordering = ['-date']
 
-
-class Accessory(models.Model):
-  name = models.CharField(max_length=50)
-  color = models.CharField(max_length=20)
-
-  def __str__(self):
-    return self.name
-
-  def get_absolute_url(self):
-    return reverse('accessory-detail', kwargs={'pk': self.id})
