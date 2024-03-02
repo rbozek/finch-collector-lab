@@ -26,11 +26,19 @@ def about(request):
   return render(request, 'about.html')
 
 def monkey_index(request):
-  monkeys = Monkey.objects.all()
+  monkeys = Monkey.objects.filter(user=request.user)
+  # Can also retrieve the logged in user's cats like this
+  # cats = request.user.cat_set.all()
   return render(request, 'monkeys/monkey-index.html', { 'monkeys': monkeys })
+
+  # replaced this for Part 7 Auth
+  # monkeys = Monkey.objects.all()
+  # return render(request, 'monkeys/monkey-index.html', { 'monkeys': monkeys })
 # From Step 1, refactored to use ORM Monkey mondel! (above)
 # def monkey_index(request):
 #   return render(request, 'monkeys/monkey-index.html', { 'monkeys': monkeys })
+
+
 
 def monkey_detail(request, monkey_id):
   monkey = Monkey.objects.get(id=monkey_id)
@@ -118,7 +126,7 @@ def signup(request):
       user = form.save()
       # This is how we log a user in - and does not redirect or anything else
       login(request, user)
-      return redirect('cat-index')
+      return redirect('monkey-index')
     else:
       error_message = 'Invalid sign up - try again'
   # In case of a bad POST or a GET request, so render signup.html with an empty form
