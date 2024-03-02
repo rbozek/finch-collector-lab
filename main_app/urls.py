@@ -24,4 +24,7 @@ urlpatterns = [
 
   path('accessories/<int:pk>/update/', views.AccessoryUpdate.as_view(), name='accessory-update'),
   path('accessories/<int:pk>/delete/', views.AccessoryDelete.as_view(), name='accessory-delete'),
+
+  # New url pattern below
+  path('accounts/signup/', views.signup, name='signup'),
 ]

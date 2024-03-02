@@ -3,6 +3,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 #Part 7 - Auth:
 from django.contrib.auth.views import LoginView
+#Part 7 - new user signup
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+
 from .models import Monkey, Accessory
 from .forms import BrushingForm
 
@@ -101,3 +105,25 @@ def assoc_accessory(request, monkey_id, accessory_id):
   # Note that you can pass a accessory's id instead of the whole object
   Monkey.objects.get(id=monkey_id).accessories.add(accessory_id)
   return redirect('monkey-detail', monkey_id=monkey_id)
+
+
+#PART 7 AUTH
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    # This creates a 'user' form object that includes the data from browser:
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      # This will add the user to the database
+      user = form.save()
+      # This is how we log a user in - and does not redirect or anything else
+      login(request, user)
+      return redirect('cat-index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  # In case of a bad POST or a GET request, so render signup.html with an empty form
+  form = UserCreationForm()
+  # could put these within the 'render' method below, this just looks cleaner:
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'signup.html', context)
+  # Same as: return render(request, 'signup.html', {'form': form, 'error_message': error_message})
