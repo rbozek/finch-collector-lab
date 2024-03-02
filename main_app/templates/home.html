@@ -18,7 +18,18 @@
   <img 
     src="{% static 'images/monkey-cowboy-small.png' %}" 
     alt="Text previously read: Cat Collector (I should replace this!)"
-  />
-</section>
-
-{% endblock %}
+    />
+  </section>
+  
+  {% comment %} PART 7 - AUTH {% endcomment %}
+  <section>
+    <form action="{% url 'home' %}" method="post" class="login">
+      <h1>Login</h1>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="hidden" name="next" value="{{ next }}">
+      <button type="submit" class="btn submit">Login</button>
+    </form>
+  </section>
+  
+  {% endblock %}

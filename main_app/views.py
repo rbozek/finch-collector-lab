@@ -1,16 +1,21 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+#Part 7 - Auth:
+from django.contrib.auth.views import LoginView
 from .models import Monkey, Accessory
 from .forms import BrushingForm
+
 
 
 # Added - might not need anymore!
 from django.http import HttpResponse
 
-# Define the home view
-def home(request):
-  return render(request, 'home.html')
+class Home(LoginView):
+  template_name = 'home.html'
+# Orig home view before AUTH
+# def home(request):
+#   return render(request, 'home.html')
   # return HttpResponse('<h1>Hello ᓚᘏᗢ</h1>')
 
 def about(request):
