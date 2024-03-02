@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from datetime import date
+from django.contrib.auth.models import User
 
 
 class Accessory(models.Model):
@@ -27,6 +28,8 @@ class Monkey(models.Model):
   age = models.IntegerField()
   # rename issue??
   accessories = models.ManyToManyField(Accessory)
+  # Add the FK linking to a user instance
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
     return self.name
