@@ -6,6 +6,8 @@ from django.contrib.auth.views import LoginView
 #Part 7 - new user signup
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+# Part 7 - for implementing Auth on Views
+from django.contrib.auth.decorators import login_required
 
 from .models import Monkey, Accessory
 from .forms import BrushingForm
@@ -25,6 +27,7 @@ class Home(LoginView):
 def about(request):
   return render(request, 'about.html')
 
+@login_required
 def monkey_index(request):
   monkeys = Monkey.objects.filter(user=request.user)
   # Can also retrieve the logged in user's cats like this
@@ -39,7 +42,7 @@ def monkey_index(request):
 #   return render(request, 'monkeys/monkey-index.html', { 'monkeys': monkeys })
 
 
-
+@login_required
 def monkey_detail(request, monkey_id):
   monkey = Monkey.objects.get(id=monkey_id)
   accessories_monkey_doesnt_have = Accessory.objects.exclude(id__in = monkey.accessories.all().values_list('id'))
@@ -77,7 +80,7 @@ class MonkeyDelete(DeleteView):
   success_url = '/monkeys/'
 
 
-
+@login_required
 def add_brushing(request, monkey_id):
   # create a ModelForm instance using the data in request.POST
   form = BrushingForm(request.POST)
@@ -109,6 +112,7 @@ class AccessoryDelete(DeleteView):
   success_url = '/accessories/'
 
 
+@login_required
 def assoc_accessory(request, monkey_id, accessory_id):
   # Note that you can pass a accessory's id instead of the whole object
   Monkey.objects.get(id=monkey_id).accessories.add(accessory_id)
