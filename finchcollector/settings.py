@@ -128,6 +128,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Part 7 AUth - Variable to specify where successful logins should redirect to
+LOGIN_REDIRECT_URL = 'monkey-index'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
