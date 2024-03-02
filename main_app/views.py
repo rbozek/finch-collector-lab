@@ -6,8 +6,9 @@ from django.contrib.auth.views import LoginView
 #Part 7 - new user signup
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-# Part 7 - for implementing Auth on Views
+# Part 7 - for implementing Auth on Views Functions & class-based views
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Monkey, Accessory
 from .forms import BrushingForm
@@ -56,7 +57,7 @@ def monkey_detail(request, monkey_id):
 
 
 
-class MonkeyCreate(CreateView):
+class MonkeyCreate(LoginRequiredMixin, CreateView):
   model = Monkey
   # fields = '__all__'
   # OR
@@ -70,12 +71,12 @@ class MonkeyCreate(CreateView):
     # Let the CreateView do its job as usual
     return super().form_valid(form)
 
-class MonkeyUpdate(UpdateView):
+class MonkeyUpdate(LoginRequiredMixin, UpdateView):
   model = Monkey
   # Let's disallow the renaming of a cat by excluding the name field!
   fields = ['breed', 'description', 'age']
 
-class MonkeyDelete(DeleteView):
+class MonkeyDelete(LoginRequiredMixin, DeleteView):
   model = Monkey
   success_url = '/monkeys/'
 
@@ -93,21 +94,21 @@ def add_brushing(request, monkey_id):
   return redirect('monkey-detail', monkey_id=monkey_id)
 
 
-class AccessoryCreate(CreateView):
+class AccessoryCreate(LoginRequiredMixin, CreateView):
   model = Accessory
   fields = '__all__'
 
-class AccessoryList(ListView):
+class AccessoryList(LoginRequiredMixin, ListView):
   model = Accessory
 
-class AccessoryDetail(DetailView):
+class AccessoryDetail(LoginRequiredMixin, DetailView):
   model = Accessory
 
-class AccessoryUpdate(UpdateView):
+class AccessoryUpdate(LoginRequiredMixin, UpdateView):
   model = Accessory
   fields = ['name', 'color']
 
-class AccessoryDelete(DeleteView):
+class AccessoryDelete(LoginRequiredMixin, DeleteView):
   model = Accessory
   success_url = '/accessories/'
 
