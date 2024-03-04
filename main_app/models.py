@@ -40,7 +40,7 @@ class Monkey(models.Model):
   def brushed_for_today(self):
     return self.brushing_set.filter(date=date.today()).count() >= len(BRUSHINGS)
   
-
+  
 # new Brushing model
 class Brushing(models.Model):
   date = models.DateField('Brushing date')

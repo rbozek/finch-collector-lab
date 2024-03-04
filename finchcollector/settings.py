@@ -30,7 +30,10 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# RB edited for deploy:
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'finch-collector.fly.dev']
+# RB added for deploy:
+CSRF_TRUSTED_ORIGINS = ['https://finch-collector.fly.dev']
 
 
 # Application definition
@@ -43,10 +46,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # RB added for deploy:
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # RB added for deploy:
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -127,6 +134,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+#RB added for deployment:
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Part 7 AUth - variable to specify where decorators and mixins should redirect to
 LOGIN_URL = 'home'
